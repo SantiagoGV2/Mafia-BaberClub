@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Barberos - LA MAFIA BARBER CLUB</title>
+    <meta name="description" content="Acceso al panel de barberos">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/panel.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/panel-bg.jpg') no-repeat center center;
+            background-size: cover;
+        }
+        
+        .login-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            max-width: 400px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        .login-header {
+            background: var(--gold);
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .login-header img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid white;
+            margin-bottom: 15px;
+        }
+        
+        .login-form {
+            padding: 30px;
+        }
+        
+        .form-floating {
+            margin-bottom: 20px;
+        }
+        
+        .form-floating > .form-control {
+            padding: 1rem 0.75rem;
+        }
+        
+        .btn-login {
+            background: var(--gold);
+            color: #000;
+            font-weight: bold;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-login:hover {
+            background: #d4af37;
+            transform: translateY(-2px);
+        }
+        
+        .error-message {
+            color: #dc3545;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="login-card animate__animated animate__fadeIn">
+                        <div class="login-header">
+                            <img src="../assets/img/logo_barber.jpg" alt="LA MAFIA BARBER CLUB">
+                            <h2 class="text-dark mb-0">Panel de Barberos</h2>
+                        </div>
+                        <div class="login-form">
+                            <form id="loginForm" onsubmit="return false;">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" required>
+                                    <label for="email">Correo Electrónico</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" id="password" placeholder="Contraseña" required>
+                                    <label for="password">Contraseña</label>
+                                </div>
+                                <div class="error-message" id="errorMessage">
+                                    Credenciales incorrectas. Por favor, intente nuevamente.
+                                </div>
+                                <button type="submit" class="btn btn-login mb-3">
+                                    <i class="bi bi-box-arrow-in-right me-2"></i> Iniciar Sesión
+                                </button>
+                                <div class="text-center">
+                                    <a href="#" class="text-muted" onclick="mostrarRecuperarPassword()">
+                                        ¿Olvidaste tu contraseña?
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Datos de ejemplo (en un caso real, esto vendría de la base de datos)
+        const barberos = [
+            {
+                id: 1,
+                nombre: "Carlos Rodríguez",
+                email: "carlos@lamafabarber.com",
+                password: "123456",
+                especialidad: "Cortes Clásicos"
+            },
+            {
+                id: 2,
+                nombre: "Miguel Sánchez",
+                email: "miguel@lamafabarber.com",
+                password: "123456",
+                especialidad: "Barbas"
+            }
+        ];
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Buscar barbero en la base de datos
+            const barbero = barberos.find(b => b.email === email && b.password === password);
+            
+            if (barbero) {
+                // Guardar datos de sesión
+                sessionStorage.setItem('barberoId', barbero.id);
+                sessionStorage.setItem('barberoNombre', barbero.nombre);
+                sessionStorage.setItem('barberoEspecialidad', barbero.especialidad);
+                
+                // Redirigir al panel
+                window.location.href = 'panel-barbero.html';
+            } else {
+                // Mostrar mensaje de error
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        });
+
+        function mostrarRecuperarPassword() {
+            alert('Por favor, contacta al administrador para recuperar tu contraseña.');
+        }
+    </script>
+</body>
+</html> 

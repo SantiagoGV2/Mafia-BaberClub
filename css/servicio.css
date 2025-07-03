@@ -1,0 +1,165 @@
+.service-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--gold);
+}
+
+
+.service-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.service-header {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/assets/img/fondo2.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 100px 0;
+    color: white;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.service-card {
+    transition: all 0.3s ease;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
+    border: 1px solid var(--gold);
+}
+
+/* Efecto hover para botones dorados */
+.btn-gold {
+    background-color: var(--gold);
+    color: var(--primary);
+    border: none;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 8px rgba(212, 175, 55, 0.3);
+    font-weight: 600;
+}
+
+.btn-gold:hover {
+    background-color: var(--gold-dark);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(212, 175, 55, 0.4);
+}
+
+.btn-gold:active {
+    transform: translateY(0);
+}
+
+/* Efecto de brillo al pasar el mouse */
+.btn-gold::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 50px;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(30deg);
+    transition: all 0.4s;
+}
+
+.btn-gold:hover::after {
+    left: 110%;
+}
+
+/* Estilo especial para las cards de paquetes */
+.service-card.border-gold {
+    border: 2px solid var(--gold);
+    box-shadow: 0 8px 16px rgba(212, 175, 55, 0.15);
+}
+
+.service-card.border-gold:hover {
+    box-shadow: 0 12px 24px rgba(212, 175, 55, 0.25);
+}
+
+/* Efecto para el badge de tiempo */
+.service-time {
+    background-color: var(--gold);
+    color: var(--primary);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.service-card:hover .service-time {
+    background-color: var(--primary);
+    color: var(--gold);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #D4AF37;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.user-avatar:hover {
+    background-color: #D4AF37;
+}
+
+.user-info {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 1rem;
+    min-width: 200px;
+    display: none;
+    z-index: 1000;
+}
+
+.user-info.show {
+    display: block;
+}
+
+.user-info p {
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+#logoutBtn, #btn-reservar {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    background-color: var(--gold);
+}
+
+#logoutBtn:hover, #btn-reservar:hover {
+    background-color: #000000;
+    color: white !important;
+}
+
+@media (max-width: 991px) {
+    #userSection {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+}

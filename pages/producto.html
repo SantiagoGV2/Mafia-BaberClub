@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos Premium - LA MAFIA BARBER CLUB</title>
+    <meta name="description" content="Productos profesionales para el cuidado del cabello y la barba">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/producto.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="../index.html">
+                    <img src="/assets/img/logo_barber.jpg" alt="LA MAFIA BARBER CLUB" class="logo-img me-2" width="40" height="40">
+                    <h1 class="m-0">LA MAFIA <span class="text-gold">BARBER CLUB</span></h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">Inicio</a>  </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="servicio.html">Servicios</a> </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="galeria.html">Galería</a>   </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="producto.html">Productos</a> </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html#barberos">Barberos</a> </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contacto">Contacto</a>
+                        </li>
+                    </ul>
+                    <div id="userSection" class="d-none">
+                        <div class="d-flex align-items-center">
+                            <div class="user-avatar me-3">
+                                <span id="userInitials" class="text-white"></span>
+                            </div>
+                            <div class="user-info">
+                                <span id="userName" class="text-white d-block fw-bold"></span>
+                                <small class="text-gold">Mi Cuenta</small>
+                            </div>
+                            <button id="logoutBtn" class="btn btn-outline-gold ms-3">
+                                <i class="bi bi-box-arrow-right me-1"></i> Salir
+                            </button>
+                        </div>
+                    </div>
+                    <div id="loginSection">
+                        <a href="login.html" class="btn btn-outline-gold ms-lg-3 text-white">Iniciar Sesión</a>
+                    </div>
+                    <a href="../index.html#reservar" class="btn btn-outline-gold ms-lg-3 text-white">Reservar</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Encabezado de Productos -->
+    <section class="products-header animate__animated animate__fadeIn">
+        <div class="container">
+            <h1 class="display-3 fw-bold mb-3">PRODUCTOS PREMIUM</h1>
+            <p class="lead">Descubre nuestra exclusiva línea de cuidado masculino</p>
+        </div>
+    </section>
+
+    <!-- Categorías -->
+    <section class="py-4">
+        <div class="container">
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <div class="category-card">
+                        <img src="../img/categories/barba.jpg" alt="Productos para barba">
+                        <div class="category-overlay">
+                            <h3 class="h5 mb-0">Barba</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="category-card">
+                        <img src="../img/categories/cabello.jpg" alt="Productos para cabello">
+                        <div class="category-overlay">
+                            <h3 class="h5 mb-0">Cabello</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="category-card">
+                        <img src="../img/categories/afeitado.jpg" alt="Productos para afeitado">
+                        <div class="category-overlay">
+                            <h3 class="h5 mb-0">Afeitado</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="category-card">
+                        <img src="../img/categories/kits.jpg" alt="Kits completos">
+                        <div class="category-overlay">
+                            <h3 class="h5 mb-0">Kits Completos</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Productos Destacados -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold">Nuestros Productos Premium</h2>
+                <p class="text-muted">Descubre la calidad y el cuidado que ofrecen nuestros productos</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Producto 1 -->
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <div class="position-relative overflow-hidden">
+                            <span class="product-badge badge-bestseller">Más vendido</span>
+                            <img src="/assets/img/shampoo.jpg" class="product-img w-100" alt="Aceite para barba">
+                        </div>
+                        <div class="card-body text-center">
+                            <div class="product-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                                <span class="text-muted small ms-1">(24)</span>
+                            </div>
+                            <h3 class="h5 mb-2">Aceite para Barba Premium</h3>
+                            <p class="text-muted small mb-3">Hidratación profunda y brillo natural</p>
+                            <div class="product-info">
+                                <ul class="benefits-list">
+                                    <li>Hidratación profunda</li>
+                                    <li>Control del picor</li>
+                                    <li>Brillo natural</li>
+                                    <li>Fragancia duradera</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 2 -->
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <div class="position-relative overflow-hidden">
+                            <span class="product-badge badge-new">Nuevo</span>
+                            <img src="/assets/img/cera.jpg" class="product-img w-100" alt="Cera modeladora">
+                        </div>
+                        <div class="card-body text-center">
+                            <div class="product-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star"></i>
+                                <span class="text-muted small ms-1">(18)</span>
+                            </div>
+                            <h3 class="h5 mb-2">Cera Modeladora Ultra Fuerte</h3>
+                            <p class="text-muted small mb-3">Fijación máxima con acabado mate</p>
+                            <div class="product-info">
+                                <ul class="benefits-list">
+                                    <li>Fijación de 24 horas</li>
+                                    <li>Acabado mate natural</li>
+                                    <li>No deja residuos</li>
+                                    <li>Fácil de lavar</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 3 -->
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="/assets/img/kit_afeitado.jpg" class="product-img w-100" alt="Kit de afeitado">
+                        </div>
+                        <div class="card-body text-center">
+                            <div class="product-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <span class="text-muted small ms-1">(36)</span>
+                            </div>
+                            <h3 class="h5 mb-2">Kit de Afeitado Premium</h3>
+                            <p class="text-muted small mb-3">Todo lo necesario para un afeitado perfecto</p>
+                            <div class="product-info">
+                                <ul class="benefits-list">
+                                    <li>Navaja de afeitar profesional</li>
+                                    <li>Brocha de pelo natural</li>
+                                    <li>Jabón de afeitar</li>
+                                    <li>Estuche de viaje</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 4 -->
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="/assets/img/shampoo2.jpg" class="product-img w-100" alt="Shampoo revitalizante">
+                        </div>
+                        <div class="card-body text-center">
+                            <div class="product-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star"></i>
+                                <span class="text-muted small ms-1">(15)</span>
+                            </div>
+                            <h3 class="h5 mb-2">Shampoo Revitalizante</h3>
+                            <p class="text-muted small mb-3">Fortalece y da volumen a tu cabello</p>
+                            <div class="product-info">
+                                <ul class="benefits-list">
+                                    <li>Fortifica el cabello</li>
+                                    <li>Da volumen natural</li>
+                                    <li>Control de caspa</li>
+                                    <li>Fragancia masculina</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto" class="bg-black text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h2 class="h3 mb-4">LA MAFIA <span class="text-gold">BARBER CLUB</span></h2>
+                    <p class="text-white">Barbería profesional donde la tradición se encuentra con el estilo moderno.</p>
+                    <div class="d-flex gap-3 mt-4">
+                        <a href="#" class="text-white"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-twitter fs-5"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-whatsapp fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h3 class="h5 mb-4 text-gold">CONTACTO</h3>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-geo-alt-fill text-gold me-2"></i> Calle Principal #123, Ciudad</li>
+                        <li class="mb-2"><i class="bi bi-telephone-fill text-gold me-2"></i> +57 123 456 7890</li>
+                        <li class="mb-2"><i class="bi bi-envelope-fill text-gold me-2"></i> info@lamafabarberclub.com</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h3 class="h5 mb-4 text-gold">HORARIO</h3>
+                    <ul class="list-unstyled text-muted">
+                        <li class="mb-2 text-white">Lunes - Viernes: 9:00 AM - 7:00 PM</li>
+                        <li class="mb-2 text-white">Sábado: 9:00 AM - 5:00 PM</li>
+                        <li class="mb-2 text-white">Domingo: Cerrado</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 bg-gold">
+            <div class="text-center text-muted">
+                <p class="mb-0 text-gold">&copy; 2023 LA MAFIA BARBER CLUB. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="../js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+.panel-header {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../img/panel-bg.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 100px 0;
+    color: white;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.reservation-card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    margin-bottom: 20px;
+}
+
+.reservation-status {
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.status-pendiente {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.status-confirmada {
+    background-color: #0dcaf0;
+    color: #fff;
+}
+
+.status-completada {
+    background-color: #198754;
+    color: #fff;
+}
+
+.status-cancelada {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.timer-display {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--gold);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.completion-form {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+/* Estilos adicionales para el panel */
+.admin-sidebar {
+    background-color: #1a1a1a;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.admin-sidebar .nav-link {
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.admin-sidebar .nav-link:hover {
+    background-color: rgba(212, 175, 55, 0.1);
+}
+
+.admin-sidebar .nav-link.active {
+    background-color: var(--gold);
+    color: #000;
+}
+
+.stats-card {
+    background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.stats-card .icon {
+    font-size: 2rem;
+    color: var(--gold);
+}
+
+.stats-card .number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.stats-card .label {
+    color: #999;
+    font-size: 0.9rem;
+} 

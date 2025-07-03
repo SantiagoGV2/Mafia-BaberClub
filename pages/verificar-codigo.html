@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Código - LA MAFIA BARBER CLUB</title>
+    <meta name="description" content="Verifica el código de recuperación en LA MAFIA BARBER CLUB">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        .verify-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../img/verify-bg.jpg') no-repeat center center;
+            background-size: cover;
+            padding: 100px 0;
+            color: white;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .verify-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #dee2e6;
+            z-index: 1;
+        }
+        
+        .step {
+            position: relative;
+            z-index: 2;
+            background: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #dee2e6;
+            color: #6c757d;
+        }
+        
+        .step.active {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        
+        .step.completed {
+            border-color: var(--gold);
+            background-color: var(--gold);
+            color: white;
+        }
+        
+        .code-inputs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .code-input {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            font-size: 24px;
+            border: 2px solid #dee2e6;
+            border-radius: 5px;
+        }
+        
+        .code-input:focus {
+            border-color: var(--gold);
+            outline: none;
+        }
+        
+        .timer {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="../index.html">
+                    <img src="/assets/img/logo_barber.jpg" alt="LA MAFIA BARBER CLUB" class="logo-img me-2" width="40" height="40">
+                    <h1 class="m-0">LA MAFIA <span class="text-gold">BARBER CLUB</span></h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/pages/servicio.html">Servicios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/pages/galeria.html">Galería</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/pages/producto.html">Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/index.html#barberos">Barberos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contacto">Contacto</a>
+                        </li>
+                    </ul>
+                    <a href="login.html" class="btn btn-outline-gold ms-lg-3 text-white">Iniciar Sesión</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Encabezado de Verificación -->
+    <section class="verify-header animate__animated animate__fadeIn">
+        <div class="container">
+            <h1 class="display-3 fw-bold mb-3">Verificar Código</h1>
+            <p class="lead">Ingresa el código de verificación enviado a tu correo</p>
+        </div>
+    </section>
+
+    <!-- Formulario de Verificación -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="verify-card p-4">
+                        <div class="text-center mb-4">
+                            <h2 class="h3">Verificación de Código</h2>
+                            <p class="text-muted">Ingresa el código de 6 dígitos enviado a tu correo</p>
+                        </div>
+                        
+                        <div class="steps">
+                            <div class="step completed">1</div>
+                            <div class="step active">2</div>
+                            <div class="step">3</div>
+                        </div>
+                        
+                        <form id="verifyForm">
+                            <div class="code-inputs">
+                                <input type="text" class="code-input" maxlength="1" pattern="[0-9]" required>
+                                <input type="text" class="code-input" maxlength="1" pattern="[0-9]" required>
+                                <input type="text" class="code-input" maxlength="1" pattern="[0-9]" required>
+                                <input type="text" class="code-input" maxlength="1" pattern="[0-9]" required>
+                                <input type="text" class="code-input" maxlength="1" pattern="[0-9]" required>
+                                <input type="text" class="code-input" maxlength="1" pattern="[0-9]" required>
+                            </div>
+                            
+                            <div class="timer">
+                                <p>El código expirará en: <span id="countdown">5:00</span></p>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-gold w-100 py-3 fw-bold">
+                                <i class="bi bi-check-circle me-2"></i> Verificar Código
+                            </button>
+                            
+                            <div class="text-center mt-3">
+                                <p class="mb-0">¿No recibiste el código? <a href="#" class="text-gold" id="resendCode">Reenviar código</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto" class="bg-black text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h2 class="h3 mb-4">LA MAFIA <span class="text-gold">BARBER CLUB</span></h2>
+                    <p class="text-muted">Barbería profesional donde la tradición se encuentra con el estilo moderno.</p>
+                    <div class="d-flex gap-3 mt-4">
+                        <a href="#" class="text-white"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-twitter fs-5"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-whatsapp fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h3 class="h5 mb-4">CONTACTO</h3>
+                    <ul class="list-unstyled text-muted">
+                        <li class="mb-2"><i class="bi bi-geo-alt-fill text-gold me-2"></i> Calle Principal #123, Ciudad</li>
+                        <li class="mb-2"><i class="bi bi-telephone-fill text-gold me-2"></i> +57 123 456 7890</li>
+                        <li class="mb-2"><i class="bi bi-envelope-fill text-gold me-2"></i> info@lamafabarberclub.com</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h3 class="h5 mb-4">HORARIO</h3>
+                    <ul class="list-unstyled text-muted">
+                        <li class="mb-2">Lunes - Viernes: 9:00 AM - 7:00 PM</li>
+                        <li class="mb-2">Sábado: 9:00 AM - 5:00 PM</li>
+                        <li>Domingo: Cerrado</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 bg-gold">
+            <div class="text-center text-muted">
+                <p class="mb-0">&copy; 2023 LA MAFIA BARBER CLUB. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/script.js"></script>
+    <script>
+        // Manejar el input del código
+        const codeInputs = document.querySelectorAll('.code-input');
+        
+        codeInputs.forEach((input, index) => {
+            input.addEventListener('input', function() {
+                if (this.value.length === 1) {
+                    if (index < codeInputs.length - 1) {
+                        codeInputs[index + 1].focus();
+                    }
+                }
+            });
+            
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Backspace' && !this.value && index > 0) {
+                    codeInputs[index - 1].focus();
+                }
+            });
+        });
+        
+        // Timer
+        function startTimer(duration, display) {
+            let timer = duration, minutes, seconds;
+            const countdown = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    clearInterval(countdown);
+                    display.textContent = "00:00";
+                    document.getElementById('resendCode').style.display = 'inline';
+                }
+            }, 1000);
+        }
+
+        window.onload = function () {
+            const fiveMinutes = 60 * 5,
+                display = document.querySelector('#countdown');
+            startTimer(fiveMinutes, display);
+        };
+        
+        // Manejar el envío del formulario
+        document.getElementById('verifyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const code = Array.from(codeInputs).map(input => input.value).join('');
+            
+            // En un caso real, aquí se verificaría el código con el servidor
+            if (code.length === 6) {
+                const email = new URLSearchParams(window.location.search).get('email');
+                window.location.href = 'nueva-password.html?email=' + encodeURIComponent(email);
+            } else {
+                alert('Por favor, ingresa el código completo');
+            }
+        });
+        
+        // Manejar reenvío de código
+        document.getElementById('resendCode').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // En un caso real, aquí se enviaría una solicitud al servidor
+            // para reenviar el código
+            
+            alert('Se ha reenviado el código de verificación');
+            window.location.reload();
+        });
+    </script>
+</body>
+</html> 

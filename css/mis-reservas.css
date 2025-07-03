@@ -1,0 +1,200 @@
+/* Estilos específicos para la página de mis reservas */
+.reservation-header {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/img/fondo2.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 100px 0;
+    color: white;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.reservation-card {
+    background-color: #fff;
+    border: 1px solid #e9ecef;
+    border-left: 5px solid var(--gold);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.reservation-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-left-color: var(--gold-dark);
+}
+
+.reservation-card .card-header {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: white;
+    border: none;
+    padding: 1rem 1.5rem;
+}
+
+.reservation-card .card-body {
+    padding: 1.5rem;
+}
+
+.reservation-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.reservation-info i {
+    color: var(--gold);
+    width: 20px;
+    margin-right: 10px;
+}
+
+.status-badge {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.4em 0.8em;
+    border-radius: 50rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-pendiente { 
+    background-color: #ffc107; 
+    color: #333; 
+}
+
+.status-confirmada { 
+    background-color: #198754; 
+    color: white; 
+}
+
+.status-completada { 
+    background-color: #0d6efd; 
+    color: white; 
+}
+
+.status-cancelada { 
+    background-color: #e90e0e; 
+    color: white; 
+}
+
+/* Estilos para el modal */
+.modal-content {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #000, #333);
+    border-bottom: 2px solid var(--gold);
+}
+
+.modal-title i {
+    color: var(--gold);
+}
+
+/* Estilos para botones */
+.btn-gold {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    border: none;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-gold:hover {
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+}
+
+/* Estilos para el spinner de carga */
+.spinner-border.text-gold {
+    color: var(--gold) !important;
+}
+
+/* Estilos para mensajes de estado */
+.no-reservations {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #6c757d;
+}
+
+.no-reservations i {
+    font-size: 4rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #D4AF37;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.user-avatar:hover {
+    background-color: #D4AF37;
+}
+
+.user-info {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 1rem;
+    min-width: 200px;
+    display: none;
+    z-index: 1000;
+}
+
+.user-info.show {
+    display: block;
+}
+
+.user-info p {
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+#logoutBtn, #btn-reservar {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    background-color: var(--gold);
+}
+
+#logoutBtn:hover, #btn-reservar:hover {
+    background-color: #000000;
+    color: white !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .reservation-header {
+        padding: 60px 0;
+    }
+    
+    .reservation-card {
+        margin-bottom: 1rem;
+    }
+    
+    .reservation-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .reservation-info i {
+        margin-bottom: 5px;
+    }
+}
