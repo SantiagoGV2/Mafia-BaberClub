@@ -98,9 +98,19 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.cancel-reservation').forEach(button => {
             button.addEventListener('click', (e) => {
                 const reservaId = e.currentTarget.dataset.reservaId;
-                if (confirm('¿Estás seguro de que deseas cancelar esta reserva?')) {
-                    cancelarReserva(reservaId);
-                }
+                Swal.fire({
+                    icon: 'question',
+                    title: '¿Estás seguro?',
+                    text: '¿Deseas cancelar esta reserva?',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sí, cancelar',
+                    cancelButtonText: 'No',
+                    confirmButtonColor: '#d4af37'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        cancelarReserva(reservaId);
+                    }
+                });
             });
         });
 
@@ -116,7 +126,12 @@ document.addEventListener('DOMContentLoaded', () => {
          document.querySelectorAll('.edit-reservation').forEach(button => {
             button.addEventListener('click', (e) => {
                 const reservaId = e.currentTarget.dataset.reservaId;
-                alert('La función para editar estará disponible próximamente. Por ahora, puedes cancelar y crear una nueva reserva.');
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Próximamente',
+                    text: 'La función para editar estará disponible próximamente. Por ahora, puedes cancelar y crear una nueva reserva.',
+                    confirmButtonColor: '#d4af37'
+                });
                 // window.location.href = `editar-reserva.html?id=${reservaId}`;
             });
         });
@@ -131,11 +146,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const result = await response.json();
             if (!response.ok) throw new Error(result.message);
 
-            alert(result.message);
+            Swal.fire({
+                icon: 'success',
+                title: 'Reserva cancelada',
+                text: result.message,
+                confirmButtonColor: '#d4af37'
+            });
             cargarReservas(); // Recargar la lista
         } catch (error) {
             console.error("Error al cancelar:", error);
-            alert(error.message);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: error.message,
+                confirmButtonColor: '#d4af37'
+            });
         }
     };
     
@@ -161,7 +186,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch(error) {
             console.error("Error al mostrar detalles:", error);
-            alert(error.message);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: error.message,
+                confirmButtonColor: '#d4af37'
+            });
         }
     };
 

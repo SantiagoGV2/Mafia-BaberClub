@@ -1,5 +1,5 @@
 .panel-header {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../img/panel-bg.jpg') no-repeat center center;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/img/dashborad-barberia.jpg') no-repeat center center;
     background-size: cover;
     padding: 100px 0;
     color: white;
@@ -7,39 +7,131 @@
     margin-bottom: 50px;
 }
 
-.reservation-card {
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(212, 175, 55, 0.3);
+/* Barra de filtros de reservas */
+.filtros-reservas {
     margin-bottom: 20px;
 }
-
-.reservation-status {
-    padding: 5px 10px;
-    border-radius: 15px;
-    font-size: 0.8rem;
-    font-weight: bold;
+.filtro-btn {
+    border-radius: 20px;
+    font-weight: 600;
+    min-width: 120px;
+    transition: all 0.2s;
+    border-width: 2px;
 }
-
-.status-pendiente {
-    background-color: #ffc107;
+.filtro-btn.active, .filtro-btn:focus {
+    background: var(--gold, #d4af37);
     color: #000;
+    border-color: var(--gold, #d4af37);
+    box-shadow: 0 2px 8px rgba(212,175,55,0.15);
+}
+.filtro-btn:not(.active):hover {
+    background: #222;
+    color: #fff;
+    border-color: #222;
 }
 
+/* Mejoras visuales para las tarjetas de reserva */
+.reservation-card {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+    border: 1.5px solid var(--gold, #d4af37);
+    margin-bottom: 24px;
+    background: #fff;
+    transition: transform 0.15s;
+}
+.reservation-card:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 12px 32px rgba(212,175,55,0.10);
+}
+.card-header {
+    background: #111;
+    color: var(--gold, #d4af37);
+    font-size: 1.2rem;
+    border-bottom: 1px solid #eee;
+}
+
+/* Badges de estado mejorados */
+.reserva-estado-badge {
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border: 2px solid transparent;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.status-pendiente {
+    background: #fff3cd;
+    color: #856404;
+    border-color: #ffe082;
+}
 .status-confirmada {
-    background-color: #0dcaf0;
-    color: #fff;
+    background: #e3f7fc;
+    color: #0dcaf0;
+    border-color: #0dcaf0;
 }
-
+.status-en-progreso {
+    background: #e7e9fd;
+    color: #0d6efd;
+    border-color: #0d6efd;
+}
 .status-completada {
-    background-color: #198754;
-    color: #fff;
+    background: #d1e7dd;
+    color: #198754;
+    border-color: #198754;
+}
+.status-cancelada {
+    background: #f8d7da;
+    color: #dc3545;
+    border-color: #dc3545;
 }
 
-.status-cancelada {
-    background-color: #dc3545;
+/* Botones de acción mejorados */
+.acciones-container .btn {
+    font-weight: 600;
+    border-radius: 16px;
+    padding: 10px 0;
+    font-size: 1rem;
+    transition: background 0.2s, color 0.2s;
+}
+.acciones-container .btn-success {
+    background: linear-gradient(90deg, #d4af37 60%, #ffc107 100%);
+    color: #000;
+    border: none;
+}
+.acciones-container .btn-danger {
+    background: linear-gradient(90deg, #dc3545 60%, #ff6f61 100%);
     color: #fff;
+    border: none;
+}
+.acciones-container .btn-primary {
+    background: linear-gradient(90deg, #0d6efd 60%, #0dcaf0 100%);
+    color: #fff;
+    border: none;
+}
+.acciones-container .btn-info {
+    background: linear-gradient(90deg, #198754 60%, #d4af37 100%);
+    color: #000;
+    border: none;
+}
+.acciones-container .btn:active, .acciones-container .btn:focus {
+    outline: 2px solid var(--gold, #d4af37);
+}
+
+/* Cronómetro destacado */
+.cronometro-container {
+    background: #fffbe6;
+    border-radius: 12px;
+    padding: 10px 0;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(212,175,55,0.07);
+}
+.cronometro-tiempo {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #d4af37;
+    letter-spacing: 2px;
 }
 
 .timer-display {

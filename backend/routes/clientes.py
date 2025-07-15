@@ -248,3 +248,112 @@ def eliminar_cliente(cliente_id):
         return jsonify({'message': 'Cliente eliminado exitosamente'}), 200
     except Exception as e:
         return jsonify({'error': 'Error al eliminar el cliente'}), 500 
+
+# --- Recuperación de contraseña para clientes ---
+from flask import current_app
+from flask_mail import Message
+import random
+import string
+from datetime import datetime, timedelta
+
+@clientes_bp.route('/recuperar-password', methods=['POST'])
+def recuperar_password():
+    data = request.get_json()
+    email = data.get('email')
+    if not email:
+        return jsonify({'error': 'Email requerido'}), 400
+
+    cliente = db.execute_query("SELECT * FROM clientes WHERE cli_email = %s", (email,))
+    if not cliente:
+        # No devolvemos un error 404 para no revelar si un email existe o no
+        return jsonify({'message': 'Si tu correo está registrado, recibirás un código de recuperación.'}), 200
+
+    codigo = ''.join(random.choices(string.digits, k=6))
+    expiracion = datetime.now() + timedelta(minutes=10)
+
+    db.execute_query(
+        "UPDATE clientes SET cli_token_recuperacion = %s, cli_token_expiracion = %s WHERE cli_email = %s",
+        (codigo, expiracion, email)
+    )
+
+    # --- LÓGICA PARA ENVIAR EL CORREO ---
+    try:
+        msg = Message("Código de Recuperación de Contraseña - LA MAFIA BARBER CLUB",
+                      sender=current_app.config['MAIL_DEFAULT_SENDER'],
+                      recipients=[email])
+        
+        # Puedes usar un diseño HTML más elaborado si quieres
+        msg.html = f"""
+            <div style="font-family: Arial, sans-serif; text-align: center; color: #333;">
+                <h2>Recuperación de Contraseña</h2>
+                <p>Hola,</p>
+                <p>Has solicitado recuperar tu contraseña. Usa el siguiente código para continuar:</p>
+                <p style="font-size: 24px; font-weight: bold; letter-spacing: 5px; background-color: #f2f2f2; padding: 10px 20px; border-radius: 5px; display: inline-block;">
+                    {codigo}
+                </p>
+                <p>Este código expirará en 10 minutos.</p>
+                <p>Si no solicitaste esto, puedes ignorar este correo.</p>
+                <hr>
+                <p style="font-size: 12px; color: #888;">LA MAFIA BARBER CLUB</p>
+            </div>
+        """
+        
+        # Usamos la instancia 'mail' de nuestra app para enviar el mensaje
+        mail = current_app.extensions.get('mail')
+        mail.send(msg)
+
+        return jsonify({'message': 'Código enviado al correo'}), 200
+
+    except Exception as e:
+        print(f"Error al enviar correo: {e}")
+        return jsonify({'error': 'No se pudo enviar el correo de recuperación.'}), 500
+
+@clientes_bp.route('/verificar-codigo', methods=['POST'])
+def verificar_codigo():
+    data = request.get_json()
+    email = data.get('email')
+    codigo = data.get('codigo')
+    if not email or not codigo:
+        return jsonify({'error': 'Datos incompletos'}), 400
+
+    cliente = db.execute_query(
+        "SELECT cli_token_recuperacion, cli_token_expiracion FROM clientes WHERE cli_email = %s", (email,)
+    )
+    if not cliente:
+        return jsonify({'error': 'No existe una cuenta con ese email'}), 404
+
+    cliente = cliente[0]
+    if cliente['cli_token_recuperacion'] != codigo:
+        return jsonify({'error': 'Código incorrecto'}), 400
+    if cliente['cli_token_expiracion'] < datetime.now():
+        return jsonify({'error': 'Código expirado'}), 400
+
+    return jsonify({'message': 'Código válido'}), 200
+
+@clientes_bp.route('/nueva-password', methods=['POST'])
+def nueva_password():
+    data = request.get_json()
+    email = data.get('email')
+    codigo = data.get('codigo')
+    nueva_password = data.get('nuevaPassword')
+    if not email or not codigo or not nueva_password:
+        return jsonify({'error': 'Datos incompletos'}), 400
+
+    cliente = db.execute_query(
+        "SELECT cli_token_recuperacion, cli_token_expiracion FROM clientes WHERE cli_email = %s", (email,)
+    )
+    if not cliente:
+        return jsonify({'error': 'No existe una cuenta con ese email'}), 404
+
+    cliente = cliente[0]
+    if cliente['cli_token_recuperacion'] != codigo:
+        return jsonify({'error': 'Código incorrecto'}), 400
+    if cliente['cli_token_expiracion'] < datetime.now():
+        return jsonify({'error': 'Código expirado'}), 400
+
+    hashed_password = bcrypt.hashpw(nueva_password.encode('utf-8'), bcrypt.gensalt())
+    db.execute_query(
+        "UPDATE clientes SET cli_password = %s, cli_token_recuperacion = NULL, cli_token_expiracion = NULL WHERE cli_email = %s",
+        (hashed_password, email)
+    )
+    return jsonify({'message': 'Contraseña actualizada exitosamente'}), 200 

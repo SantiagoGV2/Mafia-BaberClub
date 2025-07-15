@@ -18,3 +18,12 @@ class Config:
     # Configuración de la aplicación
     SECRET_KEY = os.getenv('SECRET_KEY', '001205')
     DEBUG = os.getenv('DEBUG', 'True').lower() == 'true' 
+
+    #Configuracion Correos
+    MAIL_SERVER = os.getenv('MAIL_SERVER', 'smtp.gmail.com')
+    MAIL_PORT = int(os.getenv('MAIL_PORT', 587))
+    MAIL_USE_TLS = os.getenv('MAIL_USE_TLS', 'true').lower() == 'true'
+    MAIL_USE_SSL = os.getenv('MAIL_USE_SSL', 'false').lower() == 'true'
+    MAIL_USERNAME = os.getenv('MAIL_USERNAME')
+    MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
+    MAIL_DEFAULT_SENDER = os.getenv('MAIL_USERNAME') # El remitente será tu mismo correo

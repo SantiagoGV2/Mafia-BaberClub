@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const password = document.getElementById('password').value;
         
         try {
-            const response = await fetch('http://localhost:5000/api/auth/login/cliente', {
+            const response = await fetch('http://localhost:5000/api/auth/login/barbero', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (response.ok) {
                 localStorage.setItem('token', data.access_token);
-                localStorage.setItem('userData', JSON.stringify(data.cliente));
-                window.location.href = '../index.html';
+                localStorage.setItem('userData', JSON.stringify(data.barbero));
+                window.location.href = './pages/panel-barbero.html';
             } else {
                 Swal.fire({
                     icon: 'error',

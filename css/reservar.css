@@ -1,6 +1,6 @@
  /* Estilos específicos para la página de reservas */
  .reservation-header {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../img/reservation-bg.jpg') no-repeat center center;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/img/reserva.png') no-repeat center center;
     background-size: cover;
     padding: 100px 0;
     color: white;

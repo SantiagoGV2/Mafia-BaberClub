@@ -107,7 +107,12 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             
             // Aquí se enviarían los datos al servidor
-            alert('Gracias por tu reserva. Nos pondremos en contacto contigo para confirmar.');
+            Swal.fire({
+                icon: 'success',
+                title: '¡Reserva enviada!',
+                text: 'Gracias por tu reserva. Nos pondremos en contacto contigo para confirmar.',
+                confirmButtonColor: '#d4af37'
+            });
             this.reset();
         });
     }

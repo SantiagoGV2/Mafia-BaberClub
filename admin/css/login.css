@@ -1,0 +1,66 @@
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/img/dashborad-barberia.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.login-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.login-header {
+    background: var(--gold);
+    padding: 30px;
+    text-align: center;
+}
+
+.login-header img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid white;
+    margin-bottom: 15px;
+}
+
+.login-form {
+    padding: 30px;
+}
+
+.form-floating {
+    margin-bottom: 20px;
+}
+
+.form-floating > .form-control {
+    padding: 1rem 0.75rem;
+}
+
+.btn-login {
+    background: var(--gold);
+    color: #000;
+    font-weight: bold;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+    background: #d4af37;
+    transform: translateY(-2px);
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    display: none;
+}

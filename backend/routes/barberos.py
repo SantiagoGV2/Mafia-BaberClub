@@ -312,3 +312,81 @@ def obtener_reservas_barbero():
         return jsonify(reservas), 200
     except Exception as e:
         return jsonify({'error': 'Error al obtener las reservas'}), 500 
+
+# --- Recuperación de contraseña para barberos ---
+from flask import current_app
+import random
+import string
+from datetime import datetime, timedelta
+
+@barberos_bp.route('/recuperar-password', methods=['POST'])
+def recuperar_password_barbero():
+    data = request.get_json()
+    email = data.get('email')
+    if not email:
+        return jsonify({'error': 'Email requerido'}), 400
+
+    barbero = db.execute_query("SELECT * FROM barberos WHERE bar_email = %s", (email,))
+    if not barbero:
+        return jsonify({'error': 'No existe una cuenta con ese email'}), 404
+
+    codigo = ''.join(random.choices(string.digits, k=6))
+    expiracion = datetime.now() + timedelta(minutes=10)
+
+    db.execute_query(
+        "UPDATE barberos SET bar_token_recuperacion = %s, bar_token_expiracion = %s WHERE bar_email = %s",
+        (codigo, expiracion, email)
+    )
+
+    print(f"Código de recuperación para barbero {email}: {codigo}")
+    return jsonify({'message': 'Código enviado al correo'}), 200
+
+@barberos_bp.route('/verificar-codigo', methods=['POST'])
+def verificar_codigo_barbero():
+    data = request.get_json()
+    email = data.get('email')
+    codigo = data.get('codigo')
+    if not email or not codigo:
+        return jsonify({'error': 'Datos incompletos'}), 400
+
+    barbero = db.execute_query(
+        "SELECT bar_token_recuperacion, bar_token_expiracion FROM barberos WHERE bar_email = %s", (email,)
+    )
+    if not barbero:
+        return jsonify({'error': 'No existe una cuenta con ese email'}), 404
+
+    barbero = barbero[0]
+    if barbero['bar_token_recuperacion'] != codigo:
+        return jsonify({'error': 'Código incorrecto'}), 400
+    if barbero['bar_token_expiracion'] < datetime.now():
+        return jsonify({'error': 'Código expirado'}), 400
+
+    return jsonify({'message': 'Código válido'}), 200
+
+@barberos_bp.route('/nueva-password', methods=['POST'])
+def nueva_password_barbero():
+    data = request.get_json()
+    email = data.get('email')
+    codigo = data.get('codigo')
+    nueva_password = data.get('nuevaPassword')
+    if not email or not codigo or not nueva_password:
+        return jsonify({'error': 'Datos incompletos'}), 400
+
+    barbero = db.execute_query(
+        "SELECT bar_token_recuperacion, bar_token_expiracion FROM barberos WHERE bar_email = %s", (email,)
+    )
+    if not barbero:
+        return jsonify({'error': 'No existe una cuenta con ese email'}), 404
+
+    barbero = barbero[0]
+    if barbero['bar_token_recuperacion'] != codigo:
+        return jsonify({'error': 'Código incorrecto'}), 400
+    if barbero['bar_token_expiracion'] < datetime.now():
+        return jsonify({'error': 'Código expirado'}), 400
+
+    hashed_password = bcrypt.hashpw(nueva_password.encode('utf-8'), bcrypt.gensalt())
+    db.execute_query(
+        "UPDATE barberos SET bar_password = %s, bar_token_recuperacion = NULL, bar_token_expiracion = NULL WHERE bar_email = %s",
+        (hashed_password, email)
+    )
+    return jsonify({'message': 'Contraseña actualizada exitosamente'}), 200 

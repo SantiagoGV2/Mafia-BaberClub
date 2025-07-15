@@ -15,13 +15,18 @@ def obtener_reservas():
             # Obtener reservas del barbero
             reservas = db.execute_query(
                 """
-                SELECT r.*, c.cli_nombre, c.cli_telefono, s.ser_nombre
+                 SELECT 
+                    r.res_id, c.cli_nombre, c.cli_telefono, s.ser_nombre, r.res_estado,
+                    CAST(r.res_fecha AS CHAR) as res_fecha,
+                    CONCAT(LPAD(HOUR(r.res_hora_inicio), 2, '0'), ':', LPAD(MINUTE(r.res_hora_inicio), 2, '0')) as res_hora_inicio,
+                    CAST(r.res_total_pagar AS CHAR) as res_total_pagar,
+                    r.res_notas
                 FROM reservas r
                 JOIN clientes c ON r.res_cliente_id = c.cli_id
                 JOIN servicios s ON r.res_servicio_id = s.ser_id
                 WHERE r.res_barbero_id = %s
-                ORDER BY r.res_fecha DESC, r.res_hora_inicio DESC
-                """,
+                ORDER BY r.res_fecha ASC, r.res_hora_inicio ASC
+            """,
                 (current_user['id'],)
             )
         elif current_user['tipo'] == 'cliente':

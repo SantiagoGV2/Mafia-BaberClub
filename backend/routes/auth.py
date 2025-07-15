@@ -65,7 +65,8 @@ def login_barbero():
             'id': barbero['bar_id'],
             'nombre': barbero['bar_nombre'],
             'email': barbero['bar_email'],
-            'especialidad': barbero['bar_especialidad']
+            'especialidad': barbero['bar_especialidad'],
+            'tipo': 'barbero'
         }
     }), 200
 

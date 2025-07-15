@@ -55,7 +55,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         } catch (error) {
             console.error("Error al cargar datos iniciales:", error);
-            alert("No se pudieron cargar los datos necesarios para la reserva.");
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudieron cargar los datos necesarios para la reserva.',
+                confirmButtonColor: '#d4af37'
+            });
         }
     }
 
@@ -226,7 +231,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         e.preventDefault();
 
         if (!reservaActual.servicio_id || !reservaActual.barbero_id || !reservaActual.fecha || !reservaActual.hora_inicio) {
-            alert('Por favor, completa todos los campos para continuar.');
+            Swal.fire({
+                icon: 'warning',
+                title: 'Campos incompletos',
+                text: 'Por favor, completa todos los campos para continuar.',
+                confirmButtonColor: '#d4af37'
+            });
             return;
         }
 
@@ -258,12 +268,23 @@ document.addEventListener('DOMContentLoaded', async () => {
                 throw new Error(resultado.error || 'No se pudo crear la reserva.');
             }
             
-            alert('¡Reserva creada exitosamente!');
-            window.location.href = 'mis-reservas.html'; // Redirigir a la página de "mis reservas"
+            Swal.fire({
+                icon: 'success',
+                title: '¡Reserva creada!',
+                text: 'Tu reserva fue creada exitosamente.',
+                confirmButtonColor: '#d4af37'
+            }).then(() => {
+                window.location.href = 'mis-reservas.html';
+            });
 
         } catch (error) {
             console.error('Error al enviar reserva:', error);
-            alert(error.message);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: error.message,
+                confirmButtonColor: '#d4af37'
+            });
         }
     });
 
